@@ -22,11 +22,30 @@ Enemy.prototype.update = function(dt) {
     }
 
     //Check if enemy crushed olayer after all movement iteration
-    checkCollision(this);
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
-    // all computers.
-    
+    // all computers. 
+};
+
+Enemy.prototype.checkCollisions = function(enemy) {
+    // Check the intersection of two rectangles (player and this enemy)
+    if (   
+
+        (((player.x + 17 >= enemy.x) && (player.x + 17 <= enemy.x +101)) || ((enemy.x >= player.x +17) && (enemy.x <= player.x +84)))&&
+        (((player.y +63 >= enemy.y + 77) && (player.y +63<= enemy.y +142)) || ((enemy.y + 142>= player.y +63) && (enemy.y +77 <= player.y +140)))
+
+        ) {
+            player.x = 202;
+            player.y = 400;
+            console.log('Crushed');
+    }
+
+    // Chech if player in the top
+    if (player.y <= 0) {        
+        player.x = 202;
+        player.y = 400;
+        console.log('Gongrats');
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -77,26 +96,6 @@ Player.prototype.handleInput = function (keyCode){
     case 'left':
         player.x -= player.speed;
         break;
-    }
-};
-var checkCollision = function(enemy) {
-    // Check the intersection of two rectangles (player and this enemy)
-    if (   
-
-        (((player.x + 17 >= enemy.x) && (player.x + 17 <= enemy.x +101)) || ((enemy.x >= player.x +17) && (enemy.x <= player.x +84)))&&
-        (((player.y +63 >= enemy.y + 77) && (player.y +63<= enemy.y +142)) || ((enemy.y + 142>= player.y +63) && (enemy.y +77 <= player.y +140)))
-
-        ) {
-            player.x = 202;
-            player.y = 400;
-            console.log('Crushed');
-    }
-
-    // Chech if player in the top
-    if (player.y <= 0) {        
-        player.x = 202;
-        player.y = 400;
-        console.log('Gongrats');
     }
 };
 
